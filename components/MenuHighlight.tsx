@@ -104,7 +104,7 @@ function GetBestSellers(): Highlight[] {
 export default function MenuHighlight() {
     const bestSellers = GetBestSellers();
     return (
-        <div className="min-h-screen bg-linear-to-b from-yellow-100 to-yellow-200 flex flex-col items-center justify-center py-12">
+        <div className="min-h-screen bg-linear-to-b bg-[#333839] flex flex-col items-center justify-center py-12">
             <h2 className="text-4xl font-bold text-gray-800">Nos recommandations de plats</h2>
             <div className="flex px-8 justify-center items-center m-4 space-x-6 max-w-screen flex-wrap ">
                 {bestSellers.map((highlight) => (
