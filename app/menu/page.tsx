@@ -15,7 +15,7 @@ function dishCard(dish: {
         <img
           src={dish.image}
           alt={dish.name}
-          className="w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover aspect-square hover:scale-105 hover:rounded-md transition-transform duration-300 rounded-md"
         />
       </div>
       <div className="p-2 sm:p-3 md:p-4 flex-1 flex flex-col justify-between">
@@ -56,20 +56,20 @@ export default function MenuPage() {
       <Navbar />
       
       {/* Header avec image pleine largeur qui commence sous la navbar */}
-      <div className="relative w-full h-[calc(100vh-0px)] sm:h-[calc(100vh-0px)] md:h-125 lg:h-150 overflow-hidden">
+      <div className="relative w-full overflow-hidden bg-[#333839]">
         <img
-          src="/Recipes/couscous_agneau.jpg"
+          src="test.jpg"
           alt="Notre Menu"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white">
             Notre Carte
           </h1>
         </div>
       </div>
 
-      <div className="bg-[#353839] text-white min-h-screen">
+      <div className="bg-[#333839] text-white min-h-screen">
         <div className="space-y-16 sm:space-y-20 md:space-y-24 px-4 py-8
           sm:px-6 sm:py-12
           md:px-8 md:py-16

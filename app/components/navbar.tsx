@@ -18,7 +18,7 @@ export default function Navbar() {
 
     const updateScrollState = () => {
       const scrollY = window.scrollY;
-      
+
       // Détecte si on scroll vers le haut ou vers le bas
       if (scrollY > lastScrollY && scrollY > 80) {
         // Scroll down - cache la navbar
@@ -72,7 +72,6 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Accueil", href: "/" },
-    { name: "À propos", href: "#about" },
     { name: "La carte", href: "/menu" },
     { name: "Contact", href: "#contact" },
   ];
@@ -89,16 +88,14 @@ export default function Navbar() {
           // Animation de slide up/down
           isScrollingUp ? "translate-y-0" : "-translate-y-full",
           // Background et shadow
-          isScrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-100"
-            : "bg-transparent"
+          isScrolled ? "bg-[#353839] backdrop-blur-xl" : "bg-transparent",
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-20">
             {/* Logo avec animation */}
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="flex items-center gap-2 sm:gap-3 group relative z-50"
               onClick={closeMobileMenu}
             >
@@ -111,8 +108,7 @@ export default function Navbar() {
               </div>
               <span
                 className={cn(
-                  "text-xl sm:text-2xl font-bold transition-all duration-300",
-                  isScrolled ? "text-gray-900" : "text-white"
+                  "text-xl sm:text-2xl font-bold transition-all duration-300 text-white",
                 )}
               >
                 Saraya
@@ -126,10 +122,10 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group",
+                    "relative px-4 py-2 text-sm text-white font-medium transition-all duration-300 rounded-lg group",
                     isScrolled
-                      ? "text-gray-700 hover:text-[#8A9B3A] hover:bg-gray-50"
-                      : "text-white hover:text-white/90 hover:bg-white/10"
+                      ? " hover:text-[#8A9B3A] hover:bg-gray-50"
+                      : " hover:text-white/90 hover:bg-white/10",
                   )}
                   style={{
                     animationDelay: `${index * 50}ms`,
@@ -140,21 +136,11 @@ export default function Navbar() {
                   <span
                     className={cn(
                       "absolute bottom-1 left-4 right-4 h-0.5 scale-x-0 transition-transform duration-300 group-hover:scale-x-100",
-                      isScrolled ? "bg-[#8A9B3A]" : "bg-white"
+                      isScrolled ? "bg-[#8A9B3A]" : "bg-white",
                     )}
                   />
                 </Link>
               ))}
-              
-              <Button
-                className={cn(
-                  "ml-4 transition-all duration-300 hover:scale-105 hover:shadow-lg",
-                  "bg-[#8A9B3A] hover:bg-[#6F7F2A] text-white"
-                )}
-                size="sm"
-              >
-                Réserver
-              </Button>
             </div>
 
             {/* Mobile Menu Button avec animation */}
@@ -163,7 +149,9 @@ export default function Navbar() {
               size="icon"
               className={cn(
                 "md:hidden relative z-50 transition-colors duration-300",
-                isScrolled ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-white/10"
+                isScrolled
+                  ? "text-gray-900 hover:bg-gray-100"
+                  : "text-white hover:bg-white/10",
               )}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
@@ -175,14 +163,14 @@ export default function Navbar() {
                     isScrolled ? "bg-gray-900" : "bg-white",
                     isMobileMenuOpen
                       ? "rotate-45 translate-y-0"
-                      : "-translate-y-2"
+                      : "-translate-y-2",
                   )}
                 />
                 <span
                   className={cn(
                     "absolute top-1/2 left-0 w-6 h-0.5 transition-all duration-300 ease-out",
                     isScrolled ? "bg-gray-900" : "bg-white",
-                    isMobileMenuOpen ? "opacity-0" : "opacity-100"
+                    isMobileMenuOpen ? "opacity-0" : "opacity-100",
                   )}
                 />
                 <span
@@ -191,7 +179,7 @@ export default function Navbar() {
                     isScrolled ? "bg-gray-900" : "bg-white",
                     isMobileMenuOpen
                       ? "-rotate-45 translate-y-0"
-                      : "translate-y-2"
+                      : "translate-y-2",
                   )}
                 />
               </div>
@@ -206,14 +194,14 @@ export default function Navbar() {
           "fixed inset-0 z-40 md:hidden transition-all duration-500 ease-out",
           isMobileMenuOpen
             ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            : "opacity-0 pointer-events-none",
         )}
       >
         {/* Backdrop avec blur */}
         <div
           className={cn(
             "absolute inset-0 bg-[#353839] backdrop-blur-md transition-opacity duration-500",
-            isMobileMenuOpen ? "opacity-100" : "opacity-0"
+            isMobileMenuOpen ? "opacity-100" : "opacity-0",
           )}
           onClick={closeMobileMenu}
         />
@@ -222,7 +210,7 @@ export default function Navbar() {
         <div
           className={cn(
             "absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-500 ease-out",
-            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full",
           )}
         >
           <div className="flex flex-col h-full pt-24 pb-8 px-6">
@@ -238,7 +226,7 @@ export default function Navbar() {
                     "transform transition-all duration-500 ease-out",
                     isMobileMenuOpen
                       ? "translate-x-0 opacity-100"
-                      : "translate-x-8 opacity-0"
+                      : "translate-x-8 opacity-0",
                   )}
                   style={{
                     transitionDelay: isMobileMenuOpen
@@ -256,28 +244,13 @@ export default function Navbar() {
 
             {/* CTA Button */}
             <div className="mt-auto">
-              <Button
-                className={cn(
-                  "w-full bg-[#8A9B3A] hover:bg-[#6F7F2A] text-white transition-all duration-500 ease-out hover:scale-105 hover:shadow-xl",
-                  isMobileMenuOpen
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0"
-                )}
-                style={{
-                  transitionDelay: isMobileMenuOpen ? "400ms" : "0ms",
-                }}
-                onClick={closeMobileMenu}
-              >
-                Réserver une table
-              </Button>
-
               {/* Footer info */}
               <div
                 className={cn(
                   "mt-6 pt-6 border-t border-gray-200 transition-all duration-500 ease-out",
                   isMobileMenuOpen
                     ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0"
+                    : "translate-y-8 opacity-0",
                 )}
                 style={{
                   transitionDelay: isMobileMenuOpen ? "500ms" : "0ms",
@@ -286,7 +259,9 @@ export default function Navbar() {
                 <p className="text-sm text-gray-600">
                   Ouvert du lundi au samedi
                 </p>
-                <p className="text-sm text-gray-600">12h - 14h30 | 19h - 22h30</p>
+                <p className="text-sm text-gray-600">
+                  12h - 14h30 | 19h - 22h30
+                </p>
               </div>
             </div>
           </div>
