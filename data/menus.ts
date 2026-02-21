@@ -5,6 +5,7 @@ export const dishes = [
         "Poêlée de légumes frits, pommes de terre, courgettes, œufs, épices tunisiennes",
       price: 9.5,
       image: "Recipes/brick_thon.jpg",
+      best_seller: false,
       category: "Sandwichs",
     },
     {
@@ -13,6 +14,7 @@ export const dishes = [
         "Sandwich traditionnel, thon, œuf, olives, crudités, sauce maison",
       price: 9.5,
       image: "Recipes/couscous_agneau.jpg",
+      best_seller: false,
       category: "Sandwichs",
     },
     {
@@ -20,6 +22,7 @@ export const dishes = [
       description: "Escalope de poulet grillée, salade fraîche, sauce légère",
       price: 11,
       image: "Recipes/brik_crevettes.jpg",
+      best_seller: false,
       category: "Sandwichs",
     },
     {
@@ -27,6 +30,7 @@ export const dishes = [
       description: "Merguez grillées, légumes croquants, épices douces",
       price: 11,
       image: "Recipes/brick_thon.jpg",
+      best_seller: false,
       category: "Sandwichs",
     },
     {
@@ -34,18 +38,23 @@ export const dishes = [
       description: "Foie sauté, ail, persil, épices orientales",
       price: 11,
       image: "Recipes/couscous_agneau.jpg",
+      best_seller: false,
       category: "Sandwichs",
     },
     {
       name: "Lablabi Thon",
       description: "Soupe de pois chiches, thon, ail, cumin, huile d’olive",
       price: 10,
-      image: "Recipes/brik_crevettes.jpg",      category: "Soupes",    },
+      image: "Recipes/brik_crevettes.jpg",
+      best_seller: false,
+      category: "Soupes",
+    },
     {
       name: "Lablabi Hergma",
       description: "Soupe de pois chiches, pied de veau, ail, épices",
       price: 11,
       image: "Recipes/brick_thon.jpg",
+      best_seller: false,
       category: "Soupes",
     },
     {
@@ -53,18 +62,23 @@ export const dishes = [
       description: "Feuilletage croustillant, crème légère vanillée",
       price: 4.5,
       image: "Recipes/couscous_agneau.jpg",
+      best_seller: false,
       category: "Desserts",
     },
     {
       name: "Tiramisu",
       description: "Crème mascarpone, biscuit imbibé café, cacao",
       price: 4.5,
-      image: "Recipes/brik_crevettes.jpg",      category: "Desserts",    },
+      image: "Recipes/brik_crevettes.jpg",
+      best_seller: false,
+      category: "Desserts",
+    },
     {
       name: "Tarte du jour",
       description: "Pâte dorée, fruits frais selon arrivage",
       price: 4.5,
       image: "Recipes/brick_thon.jpg",
+      best_seller: false,
       category: "Desserts",
     },
     {
@@ -72,6 +86,7 @@ export const dishes = [
       description: "Semoule fine, miel, beurre, fruits secs",
       price: 5,
       image: "Recipes/couscous_agneau.jpg",
+      best_seller: false,
       category: "Desserts",
     },
     {
@@ -79,6 +94,7 @@ export const dishes = [
       description: "Sélection de fruits frais, découpés à la minute",
       price: 5.5,
       image: "Recipes/brik_crevettes.jpg",
+      best_seller: false,
       category: "Desserts",
     },
     {
@@ -86,6 +102,7 @@ export const dishes = [
       description: "Assortiment de pâtisseries, miel, amandes, pistaches",
       price: 7,
       image: "Recipes/brick_thon.jpg",
+      best_seller: false,
       category: "Desserts",
     },
     {
@@ -93,6 +110,7 @@ export const dishes = [
       description: "Feuille croustillante, thon, œuf, persil",
       price: 4.5,
       image: "Recipes/couscous_agneau.jpg",
+      best_seller: false,
       category: "Entrées",
     },
     {
@@ -100,18 +118,23 @@ export const dishes = [
       description: "Feuille croustillante, crevettes, œuf, épices fines",
       price: 5.5,
       image: "Recipes/brik_crevettes.jpg",
+      best_seller: false,
       category: "Entrées",
     },
     {
       name: "Salade Mechouia",
       description: "Poivrons et tomates grillés, ail, huile d’olive",
       price: 7,
-      image: "Recipes/brick_thon.jpg",      category: "Entrées",    },
+      image: "Recipes/brick_thon.jpg",
+      best_seller: false,
+      category: "Entrées",
+    },
     {
       name: "Salade Tunisienne",
       description: "Tomates, concombre, oignon, thon, œuf",
       price: 7,
       image: "Recipes/couscous_agneau.jpg",
+      best_seller: false,
       category: "Entrées",
     },
     {
@@ -119,6 +142,7 @@ export const dishes = [
       description: "Œufs, poulet, fromage, persil",
       price: 4,
       image: "Recipes/brik_crevettes.jpg",
+      best_seller: false,
       category: "Entrées",
     },
     {
@@ -126,6 +150,7 @@ export const dishes = [
       description: "Sauce tomate épicée, œufs, merguez grillées",
       price: 12,
       image: "Recipes/brick_thon.jpg",
+      best_seller: false,
       category: "Plats Principaux",
     },
     {
@@ -133,6 +158,7 @@ export const dishes = [
       description: "Sauce tomate, crevettes, œufs, épices",
       price: 13,
       image: "Recipes/couscous_agneau.jpg",
+      best_seller: false,
       category: "Plats Principaux",
     },
     {
@@ -140,6 +166,7 @@ export const dishes = [
       description: "Semoule fine, poulet mijoté, légumes, pois chiches",
       price: 15,
       image: "Recipes/brik_crevettes.jpg",
+      best_seller: false,
       category: "Plats Principaux",
     },
     {
@@ -147,6 +174,7 @@ export const dishes = [
       description: "Semoule, agneau fondant, légumes, sauce épicée",
       price: 16,
       image: "Recipes/brick_thon.jpg",
+      best_seller: false,
       category: "Plats Principaux",
     },
     {
@@ -154,6 +182,7 @@ export const dishes = [
       description: "Semoule, poisson frais, légumes, bouillon parfumé",
       price: 17,
       image: "Recipes/couscous_agneau.jpg",
+      best_seller: false,
       category: "Plats Principaux",
     },
     {
@@ -161,6 +190,7 @@ export const dishes = [
       description: "Pâtes fraîches, poulet sauté, sauce tomate épicée",
       price: 15,
       image: "Recipes/brik_crevettes.jpg",
+      best_seller: false,
       category: "Plats Principaux",
     },
     {
@@ -168,6 +198,7 @@ export const dishes = [
       description: "Sauce de corète, viande mijotée, riz",
       price: 16,
       image: "Recipes/brick_thon.jpg",
+      best_seller: false,
       category: "Plats Principaux",
     },
     {
@@ -175,18 +206,23 @@ export const dishes = [
       description: "Riz parfumé, poulet, légumes, épices",
       price: 16,
       image: "Recipes/couscous_agneau.jpg",
+      best_seller: false,
       category: "Plats Principaux",
     },
     {
       name: "Dorade Grillée",
       description: "Dorade entière grillée, citron, huile d’olive",
       price: 16.5,
-      image: "Recipes/brik_crevettes.jpg",      category: "Poissons",    },
+      image: "Recipes/brik_crevettes.jpg",
+      best_seller: false,
+      category: "Poissons",
+    },
     {
       name: "Plat Pêcheur Saraya",
       description: "Assortiment de poissons et fruits de mer grillés",
       price: 40,
       image: "Recipes/brick_thon.jpg",
+      best_seller: false,
       category: "Poissons",
     },
   ];
