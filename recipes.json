@@ -1,0 +1,351 @@
+{
+  "recipes": [
+    {
+      "id": "brik-thon",
+      "name": "Briks thon",
+      "path_picture": "app/page.tsx",
+      "description": "Brik croustillant au thon, œuf coulant et persil.",
+      "price": 4.5,
+      "currency": "EUR",
+      "category": "Briks et Entrées",
+      "best_seller": false
+    },
+    {
+      "id": "brik-crevettes",
+      "name": "Brik crevettes",
+      "path_picture": "../Recipes/brik_crevettes.jpg",
+      "description": "Brik doré aux crevettes et herbes fraîches.",
+      "price": 5.5,
+      "currency": "EUR",
+      "category": "Briks et Entrées",
+      "best_seller": true
+    },
+    {
+      "id": "salade-mechouia",
+      "name": "Salade mechouia",
+      "path_picture": "app/page.tsx",
+      "description": "Légumes grillés, thon et œuf, fraîche et relevée.",
+      "price": 7,
+      "currency": "EUR",
+      "category": "Briks et Entrées",
+      "best_seller": false
+    },
+    {
+      "id": "salade-tunisienne",
+      "name": "Salade tunisienne",
+      "path_picture": "app/page.tsx",
+      "description": "Tomates, concombre, thon et œuf.",
+      "price": 7,
+      "currency": "EUR",
+      "category": "Briks et Entrées",
+      "best_seller": false
+    },
+    {
+      "id": "tajine-tunisien",
+      "name": "Tajine tunisien",
+      "path_picture": "app/page.tsx",
+      "description": "Tajine moelleux aux œufs et épices.",
+      "price": 4,
+      "currency": "EUR",
+      "category": "Briks et Entrées",
+      "best_seller": false
+    },
+
+    {
+      "id": "assiette-kafteji",
+      "name": "Assiette kafteji",
+      "path_picture": "app/page.tsx",
+      "description": "Légumes frits, œuf et sauce maison.",
+      "price": 11,
+      "currency": "EUR",
+      "category": "Assiette",
+      "best_seller": false
+    },
+    {
+      "id": "assiette-tunisienne",
+      "name": "Assiette tunisienne",
+      "path_picture": "app/page.tsx",
+      "description": "Assortiment tunisien traditionnel.",
+      "price": 11,
+      "currency": "EUR",
+      "category": "Assiette",
+      "best_seller": false
+    },
+    {
+      "id": "assiette-kafteji-merguez",
+      "name": "Assiette kafteji merguez",
+      "path_picture": "app/page.tsx",
+      "description": "Kafteji servi avec merguez grillée.",
+      "price": 12.5,
+      "currency": "EUR",
+      "category": "Assiette",
+      "best_seller": false
+    },
+    {
+      "id": "assiette-kafteji-escalope",
+      "name": "Assiette kafteji escalope",
+      "path_picture": "app/page.tsx",
+      "description": "Kafteji accompagné d'escalope grillée.",
+      "price": 12.5,
+      "currency": "EUR",
+      "category": "Assiette",
+      "best_seller": false
+    },
+    {
+      "id": "assiette-foie",
+      "name": "Assiette foie",
+      "path_picture": "app/page.tsx",
+      "description": "Foie grillé tendre et savoureux.",
+      "price": 13,
+      "currency": "EUR",
+      "category": "Assiette",
+      "best_seller": false
+    },
+
+    {
+      "id": "ojja-merguez",
+      "name": "Ojja merguez",
+      "path_picture": "app/page.tsx",
+      "description": "Ojja épicée aux merguez.",
+      "price": 12,
+      "currency": "EUR",
+      "category": "Ojja",
+      "best_seller": false
+    },
+    {
+      "id": "ojja-crevettes",
+      "name": "Ojja crevettes",
+      "path_picture": "../Recipes/ojja_crevette.jpg",
+      "description": "Ojja tomate aux crevettes.",
+      "price": 13,
+      "currency": "EUR",
+      "category": "Ojja",
+      "best_seller": true
+    },
+
+    {
+      "id": "couscous-poulet",
+      "name": "Couscous au poulet",
+      "path_picture": "app/page.tsx",
+      "description": "Couscous parfumé au poulet tendre.",
+      "price": 15,
+      "currency": "EUR",
+      "category": "Couscous",
+      "best_seller": false
+    },
+    {
+      "id": "couscous-agneau",
+      "name": "Couscous à l'agneau",
+      "path_picture": "../Recipes/couscous_agneau.jpg",
+      "description": "Semoule fine et agneau fondant.",
+      "price": 16,
+      "currency": "EUR",
+      "category": "Couscous",
+      "best_seller": true
+    },
+    {
+      "id": "couscous-poisson",
+      "name": "Couscous au poisson",
+      "path_picture": "app/page.tsx",
+      "description": "Couscous léger au poisson frais.",
+      "price": 17,
+      "currency": "EUR",
+      "category": "Couscous",
+      "best_seller": false
+    },
+
+    {
+      "id": "pates-poulet",
+      "name": "Pâtes au poulet",
+      "path_picture": "app/page.tsx",
+      "description": "Pâtes en sauce au poulet.",
+      "price": 15,
+      "currency": "EUR",
+      "category": "Pâtes",
+      "best_seller": false
+    },
+    {
+      "id": "pates-agneau",
+      "name": "Pâtes à l'agneau",
+      "path_picture": "app/page.tsx",
+      "description": "Pâtes tunisiennes à l'agneau.",
+      "price": 16,
+      "currency": "EUR",
+      "category": "Pâtes",
+      "best_seller": false
+    },
+    {
+      "id": "pates-poisson",
+      "name": "Pâtes au poisson",
+      "path_picture": "app/page.tsx",
+      "description": "Pâtes relevées au poisson.",
+      "price": 17,
+      "currency": "EUR",
+      "category": "Pâtes",
+      "best_seller": false
+    },
+    {
+      "id": "pates-fruits-de-mer",
+      "name": "Pâtes aux fruits de mer",
+      "path_picture": "app/page.tsx",
+      "description": "Pâtes généreuses aux fruits de mer.",
+      "price": 17.5,
+      "currency": "EUR",
+      "category": "Pâtes",
+      "best_seller": false
+    },
+
+    {
+      "id": "mloukhya",
+      "name": "Mloukhya",
+      "path_picture": "app/page.tsx",
+      "description": "Spécialité tunisienne riche et parfumée.",
+      "price": 16,
+      "currency": "EUR",
+      "category": "Plats traditionnels",
+      "best_seller": false
+    },
+    {
+      "id": "riz-djerbien",
+      "name": "Riz djerbien",
+      "path_picture": "app/page.tsx",
+      "description": "Riz épicé aux saveurs du sud.",
+      "price": 16,
+      "currency": "EUR",
+      "category": "Plats traditionnels",
+      "best_seller": false
+    },
+
+    {
+      "id": "kafteji-sandwich",
+      "name": "Kafteji sandwich",
+      "path_picture": "app/page.tsx",
+      "description": "Sandwich kafteji croustillant.",
+      "price": 9.5,
+      "currency": "EUR",
+      "category": "Casse-croûte",
+      "best_seller": false
+    },
+    {
+      "id": "sandwich-escalope",
+      "name": "Sandwich escalope",
+      "path_picture": "app/page.tsx",
+      "description": "Escalope grillée en pain chaud.",
+      "price": 11,
+      "currency": "EUR",
+      "category": "Casse-croûte",
+      "best_seller": false
+    },
+
+    {
+      "id": "menu-enfant",
+      "name": "Menu enfant",
+      "path_picture": "app/page.tsx",
+      "description": "Plat enfant avec boisson.",
+      "price": 8,
+      "currency": "EUR",
+      "category": "Menu enfant",
+      "best_seller": false
+    },
+    {
+      "id": "tiramisu",
+      "name": "Tiramisu",
+      "path_picture": "app/page.tsx",
+      "description": "Tiramisu onctueux maison.",
+      "price": 4.5,
+      "currency": "EUR",
+      "category": "Dessert",
+      "best_seller": false
+    },
+    {
+      "id": "patisserie-orientale",
+      "name": "Pâtisserie orientale",
+      "path_picture": "app/page.tsx",
+      "description": "Assortiment de douceurs orientales.",
+      "price": 7,
+      "currency": "EUR",
+      "category": "Dessert",
+      "best_seller": false
+    },
+    {
+      "id": "cafe-gourmand-saraya",
+      "name": "Café gourmand Saraya",
+      "path_picture": "app/page.tsx",
+      "description": "Café accompagné de douceurs.",
+      "price": 6.5,
+      "currency": "EUR",
+      "category": "Boissons",
+      "best_seller": false
+    },
+    {
+    "id": "soda",
+    "name": "Soda",
+    "path_picture": "app/page.tsx",
+    "description": "Boisson fraîche au choix.",
+    "price": 2.5,
+    "currency": "EUR",
+    "category": "Boissons",
+    "best_seller": false
+    },
+    {
+    "id": "eau-minerale",
+    "name": "Eau minérale",
+    "path_picture": "app/page.tsx",
+    "description": "Eau minérale fraîche.",
+    "price": 2.5,
+    "currency": "EUR",
+    "category": "Boissons",
+    "best_seller": false
+    },
+    {
+    "id": "citronnade-maison",
+    "name": "Citronnade maison",
+    "path_picture": "app/page.tsx",
+    "description": "Citronnade fraîchement pressée.",
+    "price": 4.5,
+    "currency": "EUR",
+    "category": "Boissons",
+    "best_seller": false
+    },
+    {
+    "id": "cafe",
+    "name": "Café",
+    "path_picture": "app/page.tsx",
+    "description": "Café chaud et intense.",
+    "price": 2,
+    "currency": "EUR",
+    "category": "Boissons",
+    "best_seller": false
+    },
+    {
+    "id": "the-menthe",
+    "name": "Thé à la menthe",
+    "path_picture": "app/page.tsx",
+    "description": "Thé vert à la menthe fraîche.",
+    "price": 2.5,
+    "currency": "EUR",
+    "category": "Boissons",
+    "best_seller": false
+    },
+    {
+    "id": "the-pignons",
+    "name": "Thé aux pignons",
+    "path_picture": "app/page.tsx",
+    "description": "Thé raffiné aux pignons.",
+    "price": 3.5,
+    "currency": "EUR",
+    "category": "Boissons",
+    "best_seller": false
+    },
+    {
+    "id": "the-amandes",
+    "name": "Thé aux amandes",
+    "path_picture": "app/page.tsx",
+    "description": "Thé doux aux amandes.",
+    "price": 3,
+    "currency": "EUR",
+    "category": "Boissons",
+    "best_seller": false
+    }
+  ]
+}
