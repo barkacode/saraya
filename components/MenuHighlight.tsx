@@ -2,6 +2,7 @@
 
 import data from "../recipes.json";
 
+
 interface Highlight {
   id: string;
   description: string;
