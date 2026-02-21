@@ -1,11 +1,11 @@
 export default function About() {
   return (
     <div className="h-screen bg-green-300 flex flex-row justify-center">
-      <div className="bg-black w-1/2 p-8 flex items-center justify-center">
-        <img src="./image.png" alt="About image" className="rounded-lg" />
+      <div className="bg-black w-1/2 flex items-center justify-center">
+        <img src="./Chef_Cuisto.jpeg" alt="About image" className="rounded-lg max-h-3/4" />
       </div>
       <div className=" bg-black p-8 text-white w-1/2 flex flex-col justify-center">
-        <h2 className="text-3xl font-bold mb-4">
+        <h2 className="text-3xl font-bold mb-4">  
           Saraya c'est quoi ?
         </h2>
         <p className="sm:text-lg leading-relaxed text-sm">

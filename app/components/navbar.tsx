@@ -99,7 +99,7 @@ export default function Navbar() {
               className="flex items-center gap-2 sm:gap-3 group relative z-50"
               onClick={closeMobileMenu}
             >
-              <div className="relative h-10 w-10 sm:h-12 sm:w-12 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+              <div className="relative h-20 w-20 sm:h-22 sm:w-22 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                 <img
                   src="/Saraya_Couleur.png"
                   alt="Saraya"
@@ -122,7 +122,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    "relative px-4 py-2 text-sm text-white font-medium transition-all duration-300 rounded-lg group",
+                    "relative px-4 py-2 text-s text-white font-medium transition-all duration-300 rounded-lg group",
                     isScrolled
                       ? " hover:text-[#8A9B3A] hover:bg-gray-50"
                       : " hover:text-white/90 hover:bg-white/10",
