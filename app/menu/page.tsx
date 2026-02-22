@@ -10,32 +10,33 @@ function dishCard(dish: {
   image: string;
 }) {
   return (
-    <div className="flex flex-row overflow-hidden">
-      <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 shrink-0 overflow-hidden">
-        <img
-          src={dish.image}
-          alt={dish.name}
-          className="w-full h-full object-cover aspect-square hover:scale-105 hover:rounded-md transition-transform duration-300 rounded-md"
-        />
-      </div>
-      <div className="p-2 sm:p-3 md:p-4 flex-1 flex flex-col justify-between">
-        <div className="flex flex-col space-y-1 justify-between mb-2">
-          <h3 className="text-sm sm:text-base md:text-lg font-bold ">
-            {dish.name}
-          </h3>
-          <p className="font-bold text-sm sm:text-base md:text-lg mt-auto">
-            {dish.price} €
-          </p>
-        </div>
-        <p className=" text-xs sm:text-xs md:text-sm line-clamp-2 mb-2">
-          {dish.description}
+    <div className="group bg-white/5 backdrop-blur-sm rounded-lg p-4 sm:p-5 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-[#8A9B3A]/50">
+      <div className="flex flex-row justify-between items-start mb-3">
+        <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white group-hover:text-[#8A9B3A] transition-colors duration-300">
+          {dish.name}
+        </h3>
+        <p className="font-bold text-base sm:text-lg md:text-xl text-[#8A9B3A] ml-4 whitespace-nowrap">
+          {dish.price} €
         </p>
       </div>
+      <p className="text-xs sm:text-sm md:text-base text-gray-300 line-clamp-2 leading-relaxed">
+        {dish.description}
+      </p>
     </div>
   );
 }
 
 export default function MenuPage() {
+  // Images fixes pour chaque catégorie
+  const categoryImages: { [key: string]: string } = {
+    Entrées: "Recipes/brik_crevettes.jpg",
+    Sandwichs: "Recipes/brick_thon.jpg",
+    Soupes: "Recipes/couscous_agneau.jpg",
+    "Plats Principaux": "Recipes/couscous_agneau.jpg",
+    Poissons: "Recipes/brik_crevettes.jpg",
+    Desserts: "Recipes/brick_thon.jpg",
+  };
+
   // Grouper les plats par catégorie
   const categories = [
     "Entrées",
@@ -46,70 +47,93 @@ export default function MenuPage() {
     "Desserts",
   ];
 
-  const dishesByCategory = categories.map((category) => ({
+  const dishesByCategory: {
+    category: string;
+    items: typeof dishes;
+    image: string;
+  }[] = categories.map((category) => ({
     category,
     items: dishes.filter((dish) => dish.category === category),
+    image: categoryImages[category] || "Recipes/brick_thon.jpg",
   }));
 
   return (
     <div>
       <Navbar />
-      
+
       {/* Header avec image pleine largeur qui commence sous la navbar */}
-      <div className="relative w-full overflow-hidden bg-[#333839]">
+      <div className="relative w-full h-[60vh] sm:h-[70vh] overflow-hidden bg-[#1a1a1a]">
         <img
-          src="test.jpg"
+          src="Recipes/couscous_agneau.jpg"
           alt="Notre Menu"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white">
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-[#333839]" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white mb-4 tracking-wide">
             Notre Carte
           </h1>
+          <div className="w-24 h-px bg-[#8A9B3A]" />
+          <p className="text-gray-200 text-sm sm:text-base mt-6 font-light tracking-wider uppercase">
+            Une cuisine authentique et raffinée
+          </p>
         </div>
       </div>
 
-      <div className="bg-[#333839] text-white min-h-screen">
-        <div className="space-y-16 sm:space-y-20 md:space-y-24 px-4 py-8
-          sm:px-6 sm:py-12
-          md:px-8 md:py-16
-          lg:px-12 lg:py-20
-          xl:px-16 xl:py-24">
+      <div className="bg-[#1a1a1a] text-white min-h-screen">
+        <div className="max-w-7xl mx-auto space-y-20 sm:space-y-28 md:space-y-32 px-4 py-12 sm:px-6 sm:py-16 md:px-8 md:py-20 lg:px-12 lg:py-24">
           {dishesByCategory.map(
-            ({ category, items }) =>
+            ({ category, items, image }) =>
               items.length > 0 && (
-                <div key={category}>
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 text-center">
-                    {category}
-                  </h2>
+                <div key={category} className="space-y-8">
+                  {/* Header de catégorie minimaliste */}
+                  <div className="text-center">
+                    <h2 className="inline-block text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-wide mb-3">
+                      {category}
+                    </h2>
+                    <div className="h-px bg-linear-to-r from-transparent via-[#8A9B3A] to-transparent max-w-xs mx-auto" />
+                  </div>
 
                   {/* mobile  */}
-                  <div className="flex flex-col space-y-4 sm:hidden">
-                    {items.map((dish, index) => (
-                      <div key={index}>{dishCard(dish)}</div>
-                    ))}
+                  <div className="sm:hidden space-y-6">
+                    <div className="relative h-64 rounded-lg overflow-hidden shadow-2xl">
+                      <img
+                        src={image}
+                        alt={category}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+                    </div>
+                    <div className="space-y-4">
+                      {items.map((dish, index) => (
+                        <div key={index}>{dishCard(dish)}</div>
+                      ))}
+                    </div>
                   </div>
 
                   {/* desktop */}
-                  <div className="hidden sm:flex sm:gap-8 md:gap-12">
-                    <div className="flex-1 flex flex-col space-y-5">
-                      {items
-                        .slice(0, Math.ceil(items.length / 2))
-                        .map((dish, index) => (
-                          <div key={index}>{dishCard(dish)}</div>
-                        ))}
+                  <div className="hidden sm:grid sm:grid-cols-2 sm:gap-8 md:gap-12 items-start">
+                    <div className=" h-full min-h-100 rounded-lg overflow-hidden shadow-2xl sticky top-24">
+                      <img
+                        src={image}
+                        alt={category}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <p className="text-white/80 text-sm font-light tracking-wide">
+                          {items.length} plat{items.length > 1 ? 's' : ''} disponible{items.length > 1 ? 's' : ''}
+                        </p>
+                      </div>
                     </div>
-                    <Separator orientation="vertical" className="w-[0.5px] bg-gray-300"  />
-                    <div className="flex-1 flex flex-col space-y-5">
-                      {items
-                        .slice(Math.ceil(items.length / 2))
-                        .map((dish, index) => (
-                          <div key={index}>{dishCard(dish)}</div>
-                        ))}
+                    <div className="space-y-4  my-auto">
+                      {items.map((dish, index) => (
+                        <div key={index}>{dishCard(dish)}</div>
+                      ))}
                     </div>
                   </div>
                 </div>
-              )
+              ),
           )}
         </div>
       </div>
