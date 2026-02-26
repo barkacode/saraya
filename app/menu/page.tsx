@@ -27,6 +27,7 @@ function dishCard(dish: {
 }
 
 export default function MenuPage() {
+  const IS_RAMADAN = new Date() < new Date("2026-03-28");
   // Images fixes pour chaque catégorie
   const categoryImages: { [key: string]: string } = {
     Entrées: "Recipes/brik_crevettes.jpg",
@@ -59,7 +60,7 @@ export default function MenuPage() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar ramadan={IS_RAMADAN}/>
 
       {/* Header avec image pleine largeur qui commence sous la navbar */}
       <div className="relative w-full h-[60vh] sm:h-[70vh] overflow-hidden bg-[#1a1a1a]">
