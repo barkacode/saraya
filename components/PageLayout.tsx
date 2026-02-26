@@ -14,7 +14,7 @@ export default function PageLayout({
 }: PageLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col bg-[#353839] text-white">
-      <Navbar />
+      <Navbar ramadan={false}/>
 
       {/* Spacer pour la navbar fixed - correspond exactement à la hauteur de la navbar */}
       <div className="h-16 sm:h-20" aria-hidden="true" />
