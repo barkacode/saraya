@@ -32,7 +32,7 @@ const events = [
     title: "L'Amour à la\nTunisienne",
     subtitle: "Le plus beau jour de votre vie",
     description: "Pour vos Fiançailles, Saraya vous accompagne avec élégance. Décors fleuris, mets raffinés et service impeccable pour une nuit de légende.",
-    media: "/events/Fiançailles.jpeg",
+    media: "/Events/Fiancailles.jpeg",
     type: "image" as const,
     tag: "Fiançailles",
     objectPosition: "center 10%",
