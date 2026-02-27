@@ -59,10 +59,10 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Restaurant Saraya",
+    title: "Saraya Restaurant Tunisien à Choisy-le-Roi",
     description:
       "Cuisine tunisienne authentique. Orchestre live vendredi & samedi. Réservation groupes & événements.",
-    images: ["/og-image.jpg"],
+    images: ["/Image_Avant.jpeg"],
   },
 
   robots: {
