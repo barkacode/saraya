@@ -18,7 +18,7 @@
       "price": 5.5,
       "currency": "EUR",
       "category": "Briks et Entrées",
-      "best_seller": true
+      "best_seller": false
     },
     {
       "id": "salade-mechouia",
@@ -120,13 +120,13 @@
       "price": 13,
       "currency": "EUR",
       "category": "Ojja",
-      "best_seller": true
+      "best_seller": false
     },
 
     {
       "id": "couscous-poulet",
       "name": "Couscous au poulet",
-      "path_picture": "app/page.tsx",
+      "path_picture": "../Recipes/couscous_poulet.jpg",
       "description": "Couscous parfumé au poulet tendre.",
       "price": 15,
       "currency": "EUR",
@@ -136,7 +136,7 @@
     {
       "id": "couscous-agneau",
       "name": "Couscous à l'agneau",
-      "path_picture": "../Recipes/couscous_agneau.jpg",
+      "path_picture": "../Recipes/couscous_agneau.png",
       "description": "Semoule fine et agneau fondant.",
       "price": 16,
       "currency": "EUR",
@@ -157,12 +157,12 @@
     {
       "id": "pates-poulet",
       "name": "Pâtes au poulet",
-      "path_picture": "app/page.tsx",
+      "path_picture": "../Recipes/Macaroni_Poulet.png",
       "description": "Pâtes en sauce au poulet.",
       "price": 15,
       "currency": "EUR",
       "category": "Pâtes",
-      "best_seller": false
+      "best_seller": true
     },
     {
       "id": "pates-agneau",
@@ -187,12 +187,12 @@
     {
       "id": "pates-fruits-de-mer",
       "name": "Pâtes aux fruits de mer",
-      "path_picture": "app/page.tsx",
+      "path_picture": "../Recipes/pates_fruits_de_mer.png",
       "description": "Pâtes généreuses aux fruits de mer.",
       "price": 17.5,
-      "currency": "EUR",
+      "currency": "EUR",    
       "category": "Pâtes",
-      "best_seller": false
+      "best_seller": true
     },
 
     {

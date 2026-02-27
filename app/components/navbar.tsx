@@ -1,269 +1,248 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import Lantern from "@/components/Ramadan/Lantern";
+import MoonCrescent from "@/components/Ramadan/MoonCrescent";
+import RamadanBadge from "@/components/Ramadan/RamadanBadge";
+type NavbarProps = {
+  ramadan: boolean
+}
 
-export default function Navbar() {
+export default function Navbar({ ramadan }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isWide, setIsWide] = useState(true);
 
-  // Gestion du scroll avec hide/show intelligent
+  const isRamadan = ramadan;
+  const navLinks = [
+    { name: "Accueil",    href: "/" },
+    { name: "La carte",   href: "/menu" },
+    { name: "Événements", href: "/#evenements" },
+    ...(isRamadan ? [{ name: "Iftar",href: "/#iftar" },] : []),
+    { name: "Contact",    href: "/#contact" },
+  ];
+
+  useEffect(() => {
+    const check = () => setIsWide(window.innerWidth >= 1024);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   useEffect(() => {
     let ticking = false;
-
-    const updateScrollState = () => {
-      const scrollY = window.scrollY;
-
-      // Détecte si on scroll vers le haut ou vers le bas
-      if (scrollY > lastScrollY && scrollY > 80) {
-        // Scroll down - cache la navbar
-        setIsScrollingUp(false);
-      } else {
-        // Scroll up - montre la navbar
-        setIsScrollingUp(true);
-      }
-
-      // Détecte si on a scrollé
-      setIsScrolled(scrollY > 20);
-      setLastScrollY(scrollY);
-      ticking = false;
-    };
-
     const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateScrollState);
-        ticking = true;
-      }
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        setIsScrollingUp(y < lastScrollY || y <= 80);
+        setIsScrolled(y > 20);
+        setLastScrollY(y);
+        ticking = false;
+      });
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [lastScrollY]);
 
-  // Ferme le menu mobile au redimensionnement
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const onResize = () => { if (window.innerWidth >= 768) setIsMobileMenuOpen(false); };
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Empêche le scroll quand le menu mobile est ouvert
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+    document.body.classList.toggle("mobile-nav-open", isMobileMenuOpen);
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
+      document.body.classList.remove("mobile-nav-open");
     };
   }, [isMobileMenuOpen]);
 
-  const navLinks = [
-    { name: "Accueil", href: "/" },
-    { name: "La carte", href: "/menu" },
-    { name: "Contact", href: "#contact" },
-  ];
-
-  const closeMobileMenu = useCallback(() => {
-    setIsMobileMenuOpen(false);
-  }, []);
+  const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
   return (
     <>
-      <nav
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out",
-          // Animation de slide up/down
-          isScrollingUp ? "translate-y-0" : "-translate-y-full",
-          // Background et shadow
-          isScrolled ? "bg-[#353839] backdrop-blur-xl" : "bg-transparent",
+      <style>{`
+        .nav-link-line { transform: scaleX(0); transition: transform 0.3s ease; transform-origin: left; }
+        .nav-link:hover .nav-link-line { transform: scaleX(1); }
+
+        .nb-btn { position: relative; overflow: hidden; transition: color 0.35s ease; }
+        .nb-btn::before { content: ''; position: absolute; inset: 0; background: #c9a84c; transform: translateX(-101%); transition: transform 0.35s ease; }
+        .nb-btn:hover::before { transform: translateX(0); }
+        .nb-btn:hover { color: #0a0a0a !important; }
+        .nb-btn span { position: relative; z-index: 1; }
+      `}</style>
+
+      <nav className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        isScrollingUp ? "translate-y-0" : "-translate-y-full",
+        isScrolled
+          ? "bg-[#0a0a0a]/95 backdrop-blur-md shadow-[0_1px_0_0_rgba(201,168,76,0.12)]"
+          : "bg-transparent",
+      )}>
+
+        {/* Décorations Ramadan */}
+         {!isMobileMenuOpen && isScrolled && isRamadan && (
+          <div className="absolute top-full left-0 w-full pointer-events-none">
+            {isWide ? (
+              <>
+                <Lantern left="5%" height={55} sensitivity={0.9} opacity={0.85} />
+                <MoonCrescent left="21%" height={40} sensitivity={1.3} opacity={0.8} />
+                <Lantern left="32%" height={60} sensitivity={1.1} opacity={0.9} />
+                <RamadanBadge left="45%" height={110} sensitivity={0.6} opacity={1} />
+                <Lantern left="60%" height={55} sensitivity={1.2} opacity={0.9} />
+                <MoonCrescent left="75%" height={45} sensitivity={1.0} opacity={0.8} />
+                <Lantern left="90%" height={60} sensitivity={0.7} opacity={0.9} />
+              </>
+            ) : (
+              <>
+                <MoonCrescent left="15%" height={32} sensitivity={1.3} opacity={0.75} />
+                <RamadanBadge left="38%" height={90} sensitivity={0.6} opacity={1} />
+                <MoonCrescent left="72%" height={32} sensitivity={1.0} opacity={0.75} />
+              </>
+            )}
+          </div>
         )}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
           <div className="flex justify-between items-center h-16 sm:h-20">
-            {/* Logo avec animation */}
-            <Link
-              href="/"
-              className="flex items-center gap-2 sm:gap-3 group relative z-50"
-              onClick={closeMobileMenu}
-            >
-              <div className="relative h-20 w-20 sm:h-22 sm:w-22 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                <img
-                  src="/Saraya_Couleur.png"
-                  alt="Saraya"
-                  className="h-full w-full object-contain"
-                />
+
+            {/* Logo */}
+            <Link href="/" onClick={closeMobileMenu}
+              className="flex items-center gap-2 sm:gap-3 group relative z-50">
+              <div className="h-16 w-16 sm:h-20 sm:w-20 transition-transform duration-300 group-hover:scale-105">
+                <img src="/Favicon/icon-512.png" alt="Saraya" className="h-full w-full object-contain" />
               </div>
-              <span
-                className={cn(
-                  "text-xl sm:text-2xl font-bold transition-all duration-300 text-white",
-                )}
-              >
+              <span className="text-lg sm:text-xl font-bold text-[#f5f0e8] tracking-wide"
+                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                 Saraya
               </span>
             </Link>
 
-            {/* Desktop Navigation avec animations */}
+            {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-1 lg:gap-2">
-              {navLinks.map((link, index) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={cn(
-                    "relative px-4 py-2 text-s text-white font-medium transition-all duration-300 rounded-lg group",
-                    isScrolled
-                      ? " hover:text-[#8A9B3A] hover:bg-gray-50"
-                      : " hover:text-white/90 hover:bg-white/10",
-                  )}
-                  style={{
-                    animationDelay: `${index * 50}ms`,
-                  }}
+              {navLinks.map((link) => (
+                <Link key={link.name} href={link.href}
+                  className="nav-link relative px-4 py-2 group"
+                  style={{ fontFamily: "'Lato', sans-serif", fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,240,232,0.7)", transition: "color 0.3s ease", textDecoration: "none" }}
+                  onMouseEnter={e => (e.currentTarget.style.color = "#c9a84c")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,240,232,0.7)")}
                 >
-                  <span className="relative z-10">{link.name}</span>
-                  {/* Underline animation */}
-                  <span
-                    className={cn(
-                      "absolute bottom-1 left-4 right-4 h-0.5 scale-x-0 transition-transform duration-300 group-hover:scale-x-100",
-                      isScrolled ? "bg-[#8A9B3A]" : "bg-white",
-                    )}
-                  />
+                  {link.name}
+                  <span className="nav-link-line absolute bottom-0 left-4 right-4 h-px bg-[#c9a84c]" />
                 </Link>
               ))}
+
+              {/* CTA réserver */}
+              <a href="/#contact"
+                className="nb-btn ml-4 inline-block border border-[rgba(201,168,76,0.7)] text-[#c9a84c] no-underline px-5 py-2.5"
+                style={{ fontFamily: "'Lato', sans-serif", fontSize: "0.65rem", fontWeight: 400, letterSpacing: "0.22em", textTransform: "uppercase" }}>
+                <span>Réserver</span>
+              </a>
             </div>
 
-            {/* Mobile Menu Button avec animation */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className={cn(
-                "md:hidden relative z-50 transition-colors duration-300",
-                isScrolled
-                  ? "text-gray-900 hover:bg-gray-100"
-                  : "text-white hover:bg-white/10",
-              )}
+            {/* Burger mobile */}
+            <button
+              className="md:hidden relative z-50 flex flex-col justify-center items-center w-10 h-10 gap-1.5"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
+              aria-label="Menu"
             >
-              <div className="relative w-6 h-6">
-                <span
-                  className={cn(
-                    "absolute top-1/2 left-0 w-6 h-0.5 transition-all duration-300 ease-out",
-                    isScrolled ? "bg-gray-900" : "bg-white",
-                    isMobileMenuOpen
-                      ? "rotate-45 translate-y-0"
-                      : "-translate-y-2",
-                  )}
-                />
-                <span
-                  className={cn(
-                    "absolute top-1/2 left-0 w-6 h-0.5 transition-all duration-300 ease-out",
-                    isScrolled ? "bg-gray-900" : "bg-white",
-                    isMobileMenuOpen ? "opacity-0" : "opacity-100",
-                  )}
-                />
-                <span
-                  className={cn(
-                    "absolute top-1/2 left-0 w-6 h-0.5 transition-all duration-300 ease-out",
-                    isScrolled ? "bg-gray-900" : "bg-white",
-                    isMobileMenuOpen
-                      ? "-rotate-45 translate-y-0"
-                      : "translate-y-2",
-                  )}
-                />
-              </div>
-            </Button>
+              <span className={cn(
+                "block w-6 h-px bg-[#f5f0e8] transition-all duration-300",
+                isMobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
+              )} />
+              <span className={cn(
+                "block w-6 h-px bg-[#f5f0e8] transition-all duration-300",
+                isMobileMenuOpen ? "opacity-0" : ""
+              )} />
+              <span className={cn(
+                "block w-6 h-px bg-[#f5f0e8] transition-all duration-300",
+                isMobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+              )} />
+            </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay avec animation premium */}
-      <div
-        className={cn(
-          "fixed inset-0 z-40 md:hidden transition-all duration-500 ease-out",
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none",
-        )}
-      >
-        {/* Backdrop avec blur */}
-        <div
-          className={cn(
-            "absolute inset-0 bg-[#353839] backdrop-blur-md transition-opacity duration-500",
-            isMobileMenuOpen ? "opacity-100" : "opacity-0",
-          )}
-          onClick={closeMobileMenu}
+      {/* Mobile menu — plein écran */}
+      <div className={cn(
+        "fixed inset-0 z-40 md:hidden flex flex-col transition-all duration-500",
+        isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      )}>
+
+        {/* Fond */}
+        <div className="absolute inset-0 bg-[#0a0a0a]" />
+
+        {/* Grain */}
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }}
         />
 
-        {/* Menu Content */}
-        <div
-          className={cn(
-            "absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-500 ease-out",
-            isMobileMenuOpen ? "translate-x-0" : "translate-x-full",
-          )}
-        >
-          <div className="flex flex-col h-full pt-24 pb-8 px-6">
-            {/* Navigation Links avec stagger animation */}
-            <nav className="flex flex-col gap-2">
-              {navLinks.map((link, index) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={closeMobileMenu}
-                  className={cn(
-                    "group relative py-4 px-6 text-lg font-medium text-gray-900 rounded-xl transition-all duration-300 hover:bg-gray-50 hover:pl-8",
-                    "transform transition-all duration-500 ease-out",
-                    isMobileMenuOpen
-                      ? "translate-x-0 opacity-100"
-                      : "translate-x-8 opacity-0",
-                  )}
-                  style={{
-                    transitionDelay: isMobileMenuOpen
-                      ? `${100 + index * 50}ms`
-                      : "0ms",
-                  }}
-                >
-                  <span className="relative">
-                    {link.name}
-                    <span className="absolute -left-4 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#8A9B3A] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </span>
-                </Link>
-              ))}
-            </nav>
+        <div className="relative z-10 flex flex-col h-full px-6 pt-28 pb-10">
 
-            {/* CTA Button */}
-            <div className="mt-auto">
-              {/* Footer info */}
-              <div
+          {/* Liens */}
+          <nav className="flex flex-col gap-1">
+            {navLinks.map((link, i) => (
+              <Link key={link.name} href={link.href} onClick={closeMobileMenu}
                 className={cn(
-                  "mt-6 pt-6 border-t border-gray-200 transition-all duration-500 ease-out",
-                  isMobileMenuOpen
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0",
+                  "group flex items-center justify-between py-5 border-b border-[rgba(201,168,76,0.1)] no-underline transition-all duration-500",
+                  isMobileMenuOpen ? "translate-x-0 opacity-100" : "translate-x-6 opacity-0"
                 )}
-                style={{
-                  transitionDelay: isMobileMenuOpen ? "500ms" : "0ms",
-                }}
+                style={{ transitionDelay: isMobileMenuOpen ? `${80 + i * 60}ms` : "0ms", textDecoration: "none" }}
               >
-                <p className="text-sm text-gray-600">
-                  Ouvert du lundi au samedi
-                </p>
-                <p className="text-sm text-gray-600">
-                  12h - 14h30 | 19h - 22h30
-                </p>
-              </div>
+                <span className="text-[#f5f0e8] font-light group-hover:text-[#c9a84c] transition-colors duration-300"
+                  style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.6rem, 6vw, 2.2rem)" }}>
+                  {link.name}
+                </span>
+                <span className="text-[#c9a84c] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ fontSize: "1.2rem" }}>
+                  →
+                </span>
+              </Link>
+            ))}
+          </nav>
+
+          {/* CTA mobile */}
+          <div className={cn(
+            "mt-10 transition-all duration-500",
+            isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          )}
+            style={{ transitionDelay: isMobileMenuOpen ? "320ms" : "0ms" }}>
+            <a href="/#contact" onClick={closeMobileMenu}
+              className="nb-btn block text-center no-underline border border-[rgba(201,168,76,0.7)] text-[#c9a84c] py-4 px-6"
+              style={{ fontFamily: "'Lato', sans-serif", fontSize: "0.7rem", fontWeight: 400, letterSpacing: "0.25em", textTransform: "uppercase" }}>
+              <span>Réserver une table</span>
+            </a>
+          </div>
+
+          {/* Infos bas */}
+          <div className={cn(
+            "mt-auto transition-all duration-500",
+            isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          )}
+            style={{ transitionDelay: isMobileMenuOpen ? "400ms" : "0ms" }}>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-5 h-px bg-[#c9a84c] opacity-50" />
+              <span className="text-[#c9a84c] uppercase tracking-[0.22em]"
+                style={{ fontSize: "0.55rem", fontFamily: "'Lato', sans-serif", fontWeight: 300 }}>
+                Informations
+              </span>
             </div>
+            <p className="text-[rgba(245,240,232,0.4)] font-light mb-1"
+              style={{ fontSize: "0.8rem", fontFamily: "'Lato', sans-serif" }}>
+              7j / 7 — 10h à 00h30
+            </p>
+            <p className="text-[rgba(245,240,232,0.4)] font-light"
+              style={{ fontSize: "0.8rem", fontFamily: "'Lato', sans-serif" }}>
+              40 bis Rue Emile Zola, Choisy-le-Roi
+            </p>
           </div>
         </div>
       </div>

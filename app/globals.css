@@ -9,6 +9,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-playfair: var(--font-playfair);
+  --font-lato: var(--font-lato);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -123,4 +125,21 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.lantern {
+  position: absolute;
+  top: 0;
+  transform-origin: top center;
+  animation: swing 4s ease-in-out infinite;
+}
+
+.lantern:nth-child(2) { animation-duration: 5s; animation-delay: 0.5s; }
+.lantern:nth-child(3) { animation-duration: 3.5s; animation-delay: 1s; }
+.lantern:nth-child(4) { animation-duration: 4.5s; animation-delay: 1.5s; }
+.lantern:nth-child(5) { animation-duration: 3.8s; animation-delay: 0.8s; }
+
+@keyframes swing {
+  0%, 100% { transform: rotate(-8deg); }
+  50%       { transform: rotate(8deg); }
 }
