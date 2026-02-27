@@ -79,7 +79,7 @@ export default function RamadanBadge({ left, sensitivity = 1, height = 120, opac
         height={height}
         viewBox="0 0 200 200"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ display: "block", overflow: "visible", marginTop: "-30px" }}
+        style={{ display: "block", overflow: "visible", marginTop: "-22%" }}
       >
         <defs>
           <linearGradient id="goldGradBadge" x1="0%" y1="0%" x2="100%" y2="100%">
