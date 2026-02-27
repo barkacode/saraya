@@ -136,7 +136,7 @@ export default function RamadanMenu() {
             {/* ── Colonne gauche : image + badge prix ── */}
             <div className="relative flex-1 min-h-[340px] lg:min-h-0 overflow-hidden">
               <img
-                src="/iftar.png"
+                src="/Iftar.png"
                 alt="Menu Ramadan Saraya"
                 className="w-full h-full object-cover object-top"
                 style={{ filter: "sepia(20%) contrast(1.05) brightness(0.75)" }}
