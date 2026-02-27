@@ -57,7 +57,7 @@ export default function RamadanBubble() {
                     <div className="rb-ring2 absolute w-16 h-16 rounded-full border border-[#c9a84c]/20" />
                 </div>
 
-                <a href="#iftar" aria-label="Menu Iftar Ramadan" className="block">
+                <a href="/#iftar" aria-label="Menu Iftar Ramadan" className="block">
                     <svg width="90" height="90" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style={{ display: "block", overflow: "visible", filter: "drop-shadow(0 4px 16px rgba(201,168,76,0.35))" }}>
                         <defs>
                             <linearGradient id="rbMoonGold" x1="0%" y1="0%" x2="100%" y2="100%">

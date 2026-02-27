@@ -21,9 +21,9 @@ export default function Navbar({ ramadan }: NavbarProps) {
   const navLinks = [
     { name: "Accueil",    href: "/" },
     { name: "La carte",   href: "/menu" },
-    { name: "Événements", href: "#evenements" },
-    ...(isRamadan ? [{ name: "Iftar", href: "#iftar" }] : []),
-    { name: "Contact",    href: "#contact" },
+    { name: "Événements", href: "/#evenements" },
+    ...(isRamadan ? [{ name: "Iftar",href: "/#iftar" },] : []),
+    { name: "Contact",    href: "/#contact" },
   ];
 
   useEffect(() => {
@@ -58,7 +58,11 @@ export default function Navbar({ ramadan }: NavbarProps) {
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    document.body.classList.toggle("mobile-nav-open", isMobileMenuOpen);
+    return () => {
+      document.body.style.overflow = "";
+      document.body.classList.remove("mobile-nav-open");
+    };
   }, [isMobileMenuOpen]);
 
   const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
@@ -85,7 +89,7 @@ export default function Navbar({ ramadan }: NavbarProps) {
       )}>
 
         {/* Décorations Ramadan */}
-        + {!isMobileMenuOpen && isScrolled && isRamadan && (
+         {!isMobileMenuOpen && isScrolled && isRamadan && (
           <div className="absolute top-full left-0 w-full pointer-events-none">
             {isWide ? (
               <>
@@ -114,7 +118,7 @@ export default function Navbar({ ramadan }: NavbarProps) {
             <Link href="/" onClick={closeMobileMenu}
               className="flex items-center gap-2 sm:gap-3 group relative z-50">
               <div className="h-16 w-16 sm:h-20 sm:w-20 transition-transform duration-300 group-hover:scale-105">
-                <img src="/saraya_logo_gold_transparent.png" alt="Saraya" className="h-full w-full object-contain" />
+                <img src="/Favicon/icon-512.png" alt="Saraya" className="h-full w-full object-contain" />
               </div>
               <span className="text-lg sm:text-xl font-bold text-[#f5f0e8] tracking-wide"
                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
@@ -137,7 +141,7 @@ export default function Navbar({ ramadan }: NavbarProps) {
               ))}
 
               {/* CTA réserver */}
-              <a href="#contact"
+              <a href="/#contact"
                 className="nb-btn ml-4 inline-block border border-[rgba(201,168,76,0.7)] text-[#c9a84c] no-underline px-5 py-2.5"
                 style={{ fontFamily: "'Lato', sans-serif", fontSize: "0.65rem", fontWeight: 400, letterSpacing: "0.22em", textTransform: "uppercase" }}>
                 <span>Réserver</span>
@@ -211,7 +215,7 @@ export default function Navbar({ ramadan }: NavbarProps) {
             isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           )}
             style={{ transitionDelay: isMobileMenuOpen ? "320ms" : "0ms" }}>
-            <a href="#contact" onClick={closeMobileMenu}
+            <a href="/#contact" onClick={closeMobileMenu}
               className="nb-btn block text-center no-underline border border-[rgba(201,168,76,0.7)] text-[#c9a84c] py-4 px-6"
               style={{ fontFamily: "'Lato', sans-serif", fontSize: "0.7rem", fontWeight: 400, letterSpacing: "0.25em", textTransform: "uppercase" }}>
               <span>Réserver une table</span>
