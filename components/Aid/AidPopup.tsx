@@ -2,18 +2,18 @@
 
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "saraya_aid_popup_seen";
+const STORAGE_KEY = "saraya_aid_popup_session";
 
 export default function AidPopup() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const seen = localStorage.getItem(STORAGE_KEY);
+    const seen = sessionStorage.getItem(STORAGE_KEY);
     if (!seen) setVisible(true);
   }, []);
 
   const close = () => {
-    localStorage.setItem(STORAGE_KEY, "true");
+    sessionStorage.setItem(STORAGE_KEY, "true");
     setVisible(false);
   };
 
@@ -21,11 +21,6 @@ export default function AidPopup() {
 
   return (
     <>
-      {/*
-        ── SEO : données structurées lisibles par Google ──────────────────────
-        Ce bloc JSON-LD est lu par les robots même si le JS n'est pas exécuté.
-        Il informe Google de la fermeture exceptionnelle du restaurant.
-      */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -259,6 +254,7 @@ export default function AidPopup() {
           {/* ── Ligne dorée ── */}
           <div style={{ margin: "16px 22px 0" }} className="aid-gold-line" />
 
+          {/* ── Tag ── */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, padding: "16px 22px 0", position: "relative", zIndex: 1 }}>
             <div style={{ height: 1, width: 20, background: "#c9a84c", opacity: .6 }} />
             <span style={{ color: "#c9a84c", fontFamily: "'Lato', sans-serif", fontSize: ".6rem", letterSpacing: ".28em", textTransform: "uppercase", fontWeight: 300 }}>
@@ -267,6 +263,7 @@ export default function AidPopup() {
             <div style={{ height: 1, width: 20, background: "#c9a84c", opacity: .6 }} />
           </div>
 
+          {/* ── Titre — indexé par Google via aria-labelledby ── */}
           <div style={{ padding: "12px 28px 0", textAlign: "center", position: "relative", zIndex: 1 }}>
             <h2
               id="aid-title"
@@ -294,6 +291,7 @@ export default function AidPopup() {
             ))}
           </div>
 
+          {/* ── Message — indexé par Google via aria-describedby ── */}
           <div id="aid-description" style={{ padding: "16px 28px 0", textAlign: "center", position: "relative", zIndex: 1 }}>
             <p style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300, color: "rgba(245,240,232,0.72)", fontSize: "clamp(.88rem, 3.5vw, .95rem)", lineHeight: 1.9, margin: 0 }}>
               À l'occasion de la fête bénie de l'<strong style={{ color: "#c9a84c", fontWeight: 400 }}>Aïd el-Fitr</strong>, toute l'équipe de Saraya vous adresse ses vœux les plus chaleureux.
@@ -317,8 +315,7 @@ export default function AidPopup() {
                   Vendredi 20 mars 2026
                 </p>
                 <p style={{ fontFamily: "'Lato', sans-serif", fontSize: "clamp(.68rem, 2.5vw, .75rem)", color: "rgba(245,240,232,0.38)", margin: "6px 0 0", letterSpacing: ".06em" }}>
-                  Nous reprenons le 21 mars à partir de 11h30 — 
-                  <br /> Koll 3am w entom bikhir 🤍
+                  Nous reprenons le 21 mars à partir de 11h30 — Koll 3am w entom bikhir 🤍
                 </p>
               </div>
             </div>

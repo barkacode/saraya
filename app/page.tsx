@@ -9,8 +9,9 @@ import RamadanBubble from "@/components/Ramadan/RamadanBubble";
 import AidPopup from "@/components/Aid/AidPopup";
 
 export default function Page() {
+  const now = new Date();
   let isRamadan = false;
-  let isAid = new Date() >= new Date("2026-03-19") && new Date() < new Date("2026-03-21");
+  let isAid = now >= new Date("2026-03-19") && now < new Date("2026-03-21");
   return (
     <div>
       {isAid && <AidPopup/>}
