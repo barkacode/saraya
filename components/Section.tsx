@@ -45,16 +45,6 @@ const layoutClasses = {
   split: 'flex flex-col lg:flex-row',
 };
 
-/**
- * Composant Section responsive pour structurer le contenu des pages
- * 
- * @example
- * ```tsx
- * <Section id="about" background="gradient-yellow" minHeight="screen" layout="centered">
- *   <h2>À propos</h2>
- * </Section>
- * ```
- */
 export default function Section({
   children,
   id,
