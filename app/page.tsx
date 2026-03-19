@@ -6,12 +6,15 @@ import Contact from "@/components/contact";
 import RamadanMenu from "@/components/Ramadan/RamadanMenu";
 import Events from "@/components/Events";
 import RamadanBubble from "@/components/Ramadan/RamadanBubble";
+import AidPopup from "@/components/Aid/AidPopup";
 
 export default function Page() {
-  let isRamadan = new Date() < new Date("2026-03-28");
+  let isRamadan = false;
+  let isAid = new Date() >= new Date("2026-03-19") && new Date() < new Date("2026-03-21");
   return (
     <div>
-      <Navbar ramadan={isRamadan} />
+      {isAid && <AidPopup/>}
+      <Navbar ramadan={isRamadan}/>
       <Header />
       <About />
       <MenuHighlight />

@@ -145,11 +145,7 @@ export default function MenuHighlight() {
           {/* Grille */}
           <div ref={gridRef} className="mh-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 lg:gap-x-12 lg:gap-y-0">
             {bestSellers.map((item, i) => (
-              <div
-                key={item.name}
-                className="mh-card"
-                style={{ marginTop: i % 3 === 1 ? "60px" : "0px" }}
-              >
+            <div key={item.name} className={`mh-card ${i % 3 === 1 ? "lg:mt-[60px]" : ""}`}>
                 <HighlightCard {...item} />
               </div>
             ))}
