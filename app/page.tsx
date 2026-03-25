@@ -11,7 +11,8 @@ import AidPopup from "@/components/Aid/AidPopup";
 export default function Page() {
   const now = new Date();
   let isRamadan = false;
-  let isAid = now >= new Date("2026-03-19") && now < new Date("2026-03-21");
+  // let isAid = now >= new Date("2026-03-19") && now < new Date("2026-03-21");
+  let isAid = false;
   return (
     <div>
       {isAid && <AidPopup/>}
