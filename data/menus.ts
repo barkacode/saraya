@@ -39,7 +39,7 @@ export const dishes = [
     name: "Salade Tunisienne",
     description: "Tomates, concombre, oignon, thon, œuf",
     price: 7.00,
-    image: "Recipes/Salade_Tunisienne.jpeg",
+    image: "Recipes/Salades_Tunisienne.jpeg",
     imagePosition: "center",
     best_seller: false,
     category: "Entrées",
