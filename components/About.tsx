@@ -7,7 +7,6 @@ export default function About() {
   const textRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => {
@@ -20,7 +19,6 @@ export default function About() {
     return () => observer.disconnect();
   }, []);
 
-  // Lucioles optimisées
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -33,7 +31,6 @@ export default function About() {
     };
     resize();
 
-    // Seulement 20 particules, données dans des tableaux Float32 (plus performant)
     const COUNT = 20;
     const x   = new Float32Array(COUNT).map(() => Math.random() * canvas.width);
     const y   = new Float32Array(COUNT).map(() => Math.random() * canvas.height);
@@ -47,7 +44,6 @@ export default function About() {
     let lastTime = 0;
 
     const draw = (time: number) => {
-      // Throttle à 30fps max pour économiser le CPU
       if (time - lastTime < 33) {
         rafId = requestAnimationFrame(draw);
         return;
@@ -64,7 +60,6 @@ export default function About() {
         op[i] += dop[i];
         if (op[i] > 0.45 || op[i] < 0.05) dop[i] *= -1;
 
-        // Halo
         const grd = ctx.createRadialGradient(x[i], y[i], 0, x[i], y[i], r[i] * 5);
         grd.addColorStop(0, `rgba(201,168,76,${op[i]})`);
         grd.addColorStop(1, "rgba(201,168,76,0)");
@@ -73,7 +68,6 @@ export default function About() {
         ctx.fillStyle = grd;
         ctx.fill();
 
-        // Point
         ctx.beginPath();
         ctx.arc(x[i], y[i], r[i], 0, 6.283);
         ctx.fillStyle = `rgba(245,230,160,${op[i] + 0.2})`;
