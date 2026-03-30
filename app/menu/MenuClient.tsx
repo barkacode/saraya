@@ -34,14 +34,7 @@ const dishesByCategory: CategoryData[] = (() => {
 })();
 
 const categoryNames = dishesByCategory.map((d) => d.category);
-
-
-// ─── Lucioles ─────────────────────────────────────────────────────────────────
-
-// Données fixes générées une seule fois (évite les diffs d'hydration)
 const FIREFLY_DATA = [
-  // [x%, y%, size, duration, delay, orbitX, orbitY, opacity]
-  // Petites
   { x: 8,  y: 15, s: 3,  dur: 8,  del: 0,   ox: 18, oy: 22, op: 0.55 },
   { x: 22, y: 42, s: 2,  dur: 11, del: 1.5, ox: 12, oy: 16, op: 0.45 },
   { x: 35, y: 8,  s: 3,  dur: 9,  del: 3,   ox: 20, oy: 14, op: 0.5  },
@@ -55,14 +48,12 @@ const FIREFLY_DATA = [
   { x: 28, y: 55, s: 2,  dur: 10, del: 1.2, ox: 14, oy: 16, op: 0.4  },
   { x: 60, y: 90, s: 3,  dur: 12, del: 0.3, ox: 12, oy: 22, op: 0.5  },
   { x: 88, y: 65, s: 2,  dur: 8,  del: 2.8, ox: 18, oy: 14, op: 0.45 },
-  // Moyennes
   { x: 18, y: 30, s: 5,  dur: 14, del: 0.7, ox: 24, oy: 28, op: 0.6  },
   { x: 40, y: 65, s: 4,  dur: 16, del: 2.2, ox: 20, oy: 32, op: 0.55 },
   { x: 62, y: 20, s: 5,  dur: 13, del: 4.5, ox: 28, oy: 20, op: 0.6  },
   { x: 78, y: 48, s: 4,  dur: 15, del: 1.8, ox: 22, oy: 26, op: 0.5  },
   { x: 50, y: 50, s: 5,  dur: 17, del: 0.4, ox: 26, oy: 30, op: 0.55 },
   { x: 32, y: 88, s: 4,  dur: 12, del: 3.2, ox: 18, oy: 24, op: 0.5  },
-  // Grosses
   { x: 12, y: 52, s: 7,  dur: 18, del: 1.0, ox: 30, oy: 36, op: 0.65 },
   { x: 48, y: 22, s: 8,  dur: 20, del: 3.8, ox: 36, oy: 28, op: 0.7  },
   { x: 72, y: 75, s: 7,  dur: 19, del: 0.6, ox: 32, oy: 40, op: 0.65 },
@@ -119,12 +110,7 @@ const Fireflies = memo(function Fireflies() {
   );
 });
 
-
-// ─── DishCard ─────────────────────────────────────────────────────────────────
-
-const DishCard = memo(function DishCard({
-  name, description, price, index,
-}: { name: string; description: string; price: number; index: number }) {
+const DishCard = memo(function DishCard({ name, description, price, index, } : { name: string; description: string; price: number; index: number }) {
   return (
     <div
       className="dish-card group relative border-b border-[rgba(201,168,76,0.1)] py-5 last:border-0"
@@ -157,11 +143,7 @@ const DishCard = memo(function DishCard({
   );
 });
 
-// ─── ImageCarousel ────────────────────────────────────────────────────────────
-
-const ImageCarousel = memo(function ImageCarousel({
-  imageMap, category, height,
-}: { imageMap: Map<string, string>; category: string; height: number }) {
+const ImageCarousel = memo(function ImageCarousel({imageMap, category, height,}: { imageMap: Map<string, string>; category: string; height: number }) {
   const entries = [...imageMap.entries()];
   const isMulti = entries.length > 1;
 
@@ -188,10 +170,7 @@ const ImageCarousel = memo(function ImageCarousel({
   }, [startTimer]);
 
   return (
-    <div
-      className="relative overflow-hidden"
-      style={{ border: "1px solid rgba(201,168,76,0.12)", height: `${height}px` }}
-    >
+    <div className="relative overflow-hidden" style={{ border: "1px solid rgba(201,168,76,0.12)", height: `${height}px` }}>
       {entries.map(([src, position], i) => (
         <img
           key={src}
@@ -207,10 +186,7 @@ const ImageCarousel = memo(function ImageCarousel({
           }}
         />
       ))}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 50%)" }}
-      />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 50%)" }}/>
       {isMulti && (
         <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-2 z-10">
           {entries.map((_, i) => (
@@ -232,8 +208,6 @@ const ImageCarousel = memo(function ImageCarousel({
     </div>
   );
 });
-
-// ─── CategorySection ──────────────────────────────────────────────────────────
 
 const CategorySection = memo(function CategorySection({
   category, items, imageMap, index,
@@ -320,8 +294,6 @@ const CategorySection = memo(function CategorySection({
   );
 });
 
-// ─── MenuPage ─────────────────────────────────────────────────────────────────
-
 export default function MenuPage() {
   const [navVisible, setNavVisible] = useState(true);
   const [isSmScreen, setIsSmScreen] = useState(false);
@@ -359,16 +331,13 @@ export default function MenuPage() {
         body.mobile-nav-open .cat-float-btn { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
       `}</style>
 
-      {/* ── Lucioles ── */}
       <Fireflies />
 
       <div className="min-h-screen relative">
         <Navbar ramadan={false} />
-
-        {/* ── Hero ── */}
         <div className="relative w-full overflow-hidden" style={{ height: "65vh", zIndex: 1 }}>
           <img
-            src="Recipes/en_tete.png"
+            src="Recipes/Fond_Plats.jpeg"
             alt="Notre Carte"
             className="absolute w-full h-full object-cover object-center"
             style={{ filter: "sepia(10%) brightness(0.75)" }}
